@@ -3,7 +3,7 @@ name: snyk-sca-publish-scan
 on:
   push:
     branches:
-      - test-gha-action
+      - "**"
 
 jobs:
   snyk-sca-scan:
@@ -25,7 +25,7 @@ jobs:
           echo "Job is $GITHUB_JOB"
           echo "Step id is ${{ steps.internal.id }}"
       - name: Snyk sca scan
-        uses: cloudbees-io-gha/snyk-sca-publish@v2
+        uses: cloudbees-io-gha/snyk-sca-publish@v1
         with:
-          server-url: ${{ vars.SNYK_ORG_ID }}
-          api-token: ${{ secrets.SNYK_TOKEN}}
+          org-id: ${{ vars.SNYK_ORG_ID }}
+          snyk-token: ${{ secrets.SNYK_TOKEN}}
